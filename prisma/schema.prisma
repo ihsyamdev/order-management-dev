@@ -30,7 +30,7 @@ model Customer {
   phone              String
   active             Boolean
   created_at         DateTime @default(now()) @db.Timestamp(0)
-  created_by         DateTime
+  created_by         String
   updated_at         DateTime @default(now()) @updatedAt @db.Timestamp(0)
-  updated_by         DateTime
+  updated_by         String
 }
