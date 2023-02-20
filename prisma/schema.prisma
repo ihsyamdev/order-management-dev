@@ -34,3 +34,14 @@ model Customer {
   updated_at         DateTime @default(now()) @updatedAt @db.Timestamp(0)
   updated_by         String
 }
+
+model User {
+  id         String   @id @default(uuid())
+  firstName  String
+  lastName   String
+  email      String   @unique
+  created_at DateTime @default(now()) @db.Timestamp(0)
+  created_by String
+  updated_at DateTime @default(now()) @updatedAt @db.Timestamp(0)
+  updated_by String
+}
