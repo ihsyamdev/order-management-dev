@@ -31,14 +31,14 @@ export class ProductPrismaRepository implements ProductRepositoryInterface {
     )
   }
   async findOne(ProductId: string): Promise<Product> {
-    console.log('product-prisma-repository')
+    console.log('product-prisma-repository-one')
     const product = await this.prisma.product.findFirst({
       where: {
         ProductId: ProductId
       }
     })
 
-    if (!Product) return null
+    if (!product) return null
 
     return new Product(
       product.ProductId,
@@ -51,6 +51,7 @@ export class ProductPrismaRepository implements ProductRepositoryInterface {
     )
   }
   async findAll(): Promise<Product[]> {
+    console.log('product-prisma-repository-all')
     return await this.prisma.product.findMany({})
   }
 }
