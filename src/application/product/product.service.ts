@@ -13,8 +13,8 @@ export class ProductService {
     return await this.ProductRepository.create(product)
   }
 
-  async findOne(ProductId: string): Promise<Product> {
-    return await this.ProductRepository.findOne(ProductId)
+  async findOne(productId: string): Promise<Product> {
+    return await this.ProductRepository.findOne(productId)
   }
 
   async findAll(): Promise<Product[]> {

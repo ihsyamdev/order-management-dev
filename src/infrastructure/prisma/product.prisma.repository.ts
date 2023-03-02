@@ -11,47 +11,45 @@ export class ProductPrismaRepository implements ProductRepositoryInterface {
   async create(product: Product): Promise<Product> {
     const createdProduct = await this.prisma.product.create({
       data: {
-        ProductId: uuid(),
-        ProductName: product.ProductName,
-        UseId: product.UseId,
-        created_at: new Date(),
-        created_by: product.created_by,
-        updated_at: new Date(),
-        updated_by: product.updated_by
+        productId: uuid(),
+        productName: product.productName,
+        useId: product.useId,
+        createdAt: new Date(),
+        createdBy: product.createdBy,
+        updatedAt: new Date(),
+        updatedBy: product.updatedBy
       }
     })
     return new Product(
-      createdProduct.ProductId,
-      createdProduct.ProductName,
-      createdProduct.UseId,
-      createdProduct.created_at,
-      createdProduct.created_by,
-      createdProduct.updated_at,
-      createdProduct.updated_by
+      createdProduct.productId,
+      createdProduct.productName,
+      createdProduct.useId,
+      createdProduct.createdAt,
+      createdProduct.createdBy,
+      createdProduct.updatedAt,
+      createdProduct.updatedBy
     )
   }
-  async findOne(ProductId: string): Promise<Product> {
-    console.log('product-prisma-repository-one')
+  async findOne(productId: string): Promise<Product> {
     const product = await this.prisma.product.findFirst({
       where: {
-        ProductId: ProductId
+        productId: productId
       }
     })
 
     if (!product) return null
 
     return new Product(
-      product.ProductId,
-      product.ProductName,
-      product.UseId,
-      product.created_at,
-      product.created_by,
-      product.updated_at,
-      product.updated_by
+      product.productId,
+      product.productName,
+      product.useId,
+      product.createdAt,
+      product.createdBy,
+      product.updatedAt,
+      product.updatedBy
     )
   }
   async findAll(): Promise<Product[]> {
-    console.log('product-prisma-repository-all')
     return await this.prisma.product.findMany({})
   }
 }

@@ -21,9 +21,9 @@ export class ProductController {
     }
   }
 
-  @Get(':ProductId')
-  async findOne(@Param('ProductId') ProductId: string) {
-    const product = await this.productService.findOne(ProductId)
+  @Get(':productId')
+  async findOne(@Param('productId') productId: string) {
+    const product = await this.productService.findOne(productId)
     return {
       statusCode: HttpStatus.OK,
       item: {
@@ -35,13 +35,13 @@ export class ProductController {
   @Post()
   async create(@Body() data: ProductCreateArgs) {
     const product: Product = {
-      ProductId: uuid(),
-      ProductName: data.ProductName,
-      UseId: data.UseId,
-      created_at: new Date(),
-      created_by: data.created_by,
-      updated_at: new Date(),
-      updated_by: data.updated_by
+      productId: uuid(),
+      productName: data.productName,
+      useId: data.useId,
+      createdAt: new Date(),
+      createdBy: data.createdBy,
+      updatedAt: new Date(),
+      updatedBy: data.updatedBy
     }
     const createdProduct = await this.productService.create(product)
     return {

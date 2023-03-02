@@ -46,12 +46,12 @@ model User {
   updated_by String
 }
 
-model product {
-  ProductId   String   @id @default(uuid())
-  ProductName String
-  UseId       String   
-  created_at DateTime @default(now()) @db.Timestamp(0)
-  created_by String
-  updated_at DateTime @default(now()) @updatedAt @db.Timestamp(0)
-  updated_by String
+model Product {
+  productId   String   @id @default(uuid())
+  productName String
+  useId       String   
+  createdAt   DateTime @default(now()) @db.Timestamp(0)
+  createdBy   String
+  updatedAt   DateTime @default(now()) @updatedAt @db.Timestamp(0)
+  updatedBy   String
 }

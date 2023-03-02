@@ -1,19 +1,19 @@
 export interface ProductCreateArgs {
-    ProductName: string
-    UseId: string
-    created_by: string
-    updated_by: string
+    productName: string
+    useId: string
+    createdBy: string
+    updatedBy: string
   }
   
   export class Product {
     constructor(
-      public readonly ProductId: string,
-      public readonly ProductName: string,
-      public readonly UseId: string,
-      public readonly created_at: Date,
-      public readonly created_by: string,
-      public readonly updated_at: Date,
-      public readonly updated_by: string,
+      public readonly productId: string,
+      public readonly productName: string,
+      public readonly useId: string,
+      public readonly createdAt: Date,
+      public readonly createdBy: string,
+      public readonly updatedAt: Date,
+      public readonly updatedBy: string,
     ) { }
   }
   
