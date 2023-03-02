@@ -45,3 +45,13 @@ model User {
   updated_at DateTime @default(now()) @updatedAt @db.Timestamp(0)
   updated_by String
 }
+
+model Product {
+  productId   String   @id @default(uuid())
+  productName String
+  useId       String   
+  createdAt   DateTime @default(now()) @db.Timestamp(0)
+  createdBy   String
+  updatedAt   DateTime @default(now()) @updatedAt @db.Timestamp(0)
+  updatedBy   String
+}
