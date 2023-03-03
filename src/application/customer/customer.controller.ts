@@ -48,9 +48,9 @@ export class CustomerController {
       phone: data.phone,
       active: true,
       createdAt: new Date(),
-      createdBy: data.created_by,
+      createdBy: data.createdBy,
       updatedAt: new Date(),
-      updatedBy: data.updated_by
+      updatedBy: data.updatedBy
     }
     const createdCustomer = await this.customerService.create(customer)
     return {
