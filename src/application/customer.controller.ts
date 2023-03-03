@@ -47,10 +47,10 @@ export class CustomerController {
       shippingStreet: data.shippingStreet,
       phone: data.phone,
       active: true,
-      created_at: new Date(),
-      created_by: data.created_by,
-      updated_at: new Date(),
-      updated_by: data.updated_by
+      createdAt: new Date(),
+      createdBy: data.created_by,
+      updatedAt: new Date(),
+      updatedBy: data.updated_by
     }
     const createdCustomer = await this.customerService.create(customer)
     return {

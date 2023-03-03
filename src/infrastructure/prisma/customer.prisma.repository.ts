@@ -23,10 +23,10 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
         shippingStreet: customer.shippingStreet,
         phone: customer.phone,
         active: true,
-        created_at: new Date(),
-        created_by: customer.created_by,
-        updated_at: new Date(),
-        updated_by: customer.updated_by
+        createdAt: new Date(),
+        createdBy: customer.createdBy,
+        updatedAt: new Date(),
+        updatedBy: customer.updatedBy
       }
     })
     return new Customer(
@@ -42,10 +42,10 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
       createdCustomer.shippingStreet,
       createdCustomer.phone,
       createdCustomer.active,
-      createdCustomer.created_at,
-      createdCustomer.created_by,
-      createdCustomer.updated_at,
-      createdCustomer.updated_by
+      createdCustomer.createdAt,
+      createdCustomer.createdBy,
+      createdCustomer.updatedAt,
+      createdCustomer.updatedBy
     )
   }
   async findOne(userId: string): Promise<Customer> {
@@ -71,10 +71,10 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
       customer.shippingStreet,
       customer.phone,
       customer.active,
-      customer.created_at,
-      customer.created_by,
-      customer.updated_at,
-      customer.updated_by
+      customer.createdAt,
+      customer.createdBy,
+      customer.updatedAt,
+      customer.updatedBy
     )
   }
   async findAll(): Promise<Customer[]> {

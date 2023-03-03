@@ -27,9 +27,9 @@ export class Customer {
     public readonly shippingStreet: string,
     public readonly phone: string,
     public readonly active: boolean,
-    public readonly created_at: Date,
-    public readonly created_by: string,
-    public readonly updated_at: Date,
-    public readonly updated_by: string,
+    public readonly createdAt: Date,
+    public readonly createdBy: string,
+    public readonly updatedAt: Date,
+    public readonly updatedBy: string,
   ) { }
 }
