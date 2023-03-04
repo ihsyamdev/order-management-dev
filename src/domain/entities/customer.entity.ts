@@ -9,8 +9,8 @@ export interface CustomerCreateArgs {
   shippingCity: string
   shippingStreet: string
   phone: string
-  created_by: string
-  updated_by: string
+  createdBy: string
+  updatedBy: string
 }
 
 export class Customer {
