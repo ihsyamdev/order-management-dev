@@ -4,7 +4,7 @@ import { ProductModule } from "./product.module"
 import { PrismaService } from "../../infrastructure/prisma/prisma.service"
 import * as request from 'supertest'
 
-const fixedProductId = 'rintest'
+const fixedId = 'rintest'
 
 describe('ProductController', () => {
   let productController: ProductController
@@ -17,9 +17,9 @@ describe('ProductController', () => {
     productController = app.get<ProductController>(ProductController)
 
     const existProduct = {
-      productId: fixedProductId,
-      productName: '林テスト商品A',
-      useId: '1',
+      id: fixedId,
+      name: '林テスト商品A',
+      active: true,
       createdAt: new Date(),
       createdBy: 'shoki.rin',
       updatedAt: new Date(),
@@ -32,14 +32,14 @@ describe('ProductController', () => {
 
   it('/product (POST)', async () => {
     const postData = {
-      productName: '林テスト商品B',
-      useId: '1',
+      name: '林テスト商品B',
+      active: true,
       createdBy: 'shoki.rin',
       updatedBy: 'shoki.rin'
     }
     const response = await productController.create(postData)
     expect(response.statusCode).toBe(201)
-    expect(response.item.createdProduct.productName).toEqual(postData.productName)
+    expect(response.item.createdProduct.name).toEqual(postData.name)
   })
 
   it('/product (GET)', async () => {
@@ -49,7 +49,7 @@ describe('ProductController', () => {
   })
 
   it('/product/{id} (GET)', async () => {
-    const response = await productController.findOne(fixedProductId)
+    const response = await productController.findOne(fixedId)
     expect(response.statusCode).toBe(200)
     expect(response.item.product).not.toBeNull()
   })

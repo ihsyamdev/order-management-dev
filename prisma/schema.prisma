@@ -48,11 +48,39 @@ model User {
 }
 
 model Product {
-  productId   String   @id @default(uuid())
-  productName String
-  useId       String   
+  id          String   @id @default(uuid())
+  name        String  
+  active      Boolean
   createdAt   DateTime @default(now()) @db.Timestamp(0)
   createdBy   String
   updatedAt   DateTime @default(now()) @updatedAt @db.Timestamp(0)
   updatedBy   String
+}
+
+model Order {
+  id              String   @id @default(uuid())
+  active　　　     Boolean
+  orderDate       DateTime
+  sales           String
+  customer        String
+  approver        String
+  approvalStage   String
+  confirmed       String
+  remark          String
+  createdAt       DateTime @default(now()) @db.Timestamp(0)
+  updatedAt       DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+model OrderDetail {
+  id              String   @id @default(uuid())
+  active　　　     Boolean
+  order           String
+  lineNo          Int
+  product         String
+  quantity        Int
+  unitPrice       Decimal
+  amount          Decimal
+  remark          String
+  createdAt       DateTime @default(now()) @db.Timestamp(0)
+  updatedAt       DateTime @default(now()) @updatedAt @db.Timestamp(0)  
 }
