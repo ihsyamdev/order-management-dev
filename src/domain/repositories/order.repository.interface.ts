@@ -17,6 +17,3 @@ export interface OrderDetailRepositoryInterface {
   export interface OrderArrayRepositoryInterface {
     create(orderArray:OrderArray): Promise<OrderArray>
   }
-  //export interface OrderArrayRepositoryInterface {
-  //  create(order:Order,orderDetail: OrderDetail): Promise<OrderArray>
-  //}

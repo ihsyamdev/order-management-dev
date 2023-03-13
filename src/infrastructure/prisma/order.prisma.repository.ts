@@ -5,7 +5,7 @@ import { OrderDetail } from '../../domain/entities/order.entity'
 import { OrderArray } from '../../domain/entities/order.entity'
 import { OrderRepositoryInterface } from '../../domain/repositories/order.repository.interface'
 import { OrderDetailRepositoryInterface } from '../../domain/repositories/order.repository.interface'
-import { OrderArrayRepositoryInterface } from '../../domain/repositories/order.repository.interface'
+//import { OrderArrayRepositoryInterface } from '../../domain/repositories/order.repository.interface'
 import { PrismaService } from './prisma.service'
 
 @Injectable()
@@ -13,6 +13,7 @@ export class OrderPrismaRepository implements OrderRepositoryInterface {
   constructor(private prisma: PrismaService) { }
 
   async create(order: Order): Promise<Order> {
+    console.log('order-prisma-repository-orderを通った1')
     const createdOrder = await this.prisma.order.create({ 
       data: {
         id: uuid(),
@@ -28,6 +29,7 @@ export class OrderPrismaRepository implements OrderRepositoryInterface {
         updatedAt: new Date(),
       }
     })
+    console.log('order-prisma-repository-orderを通った2')
     return new Order(
       createdOrder.id,
       createdOrder.active,
@@ -71,118 +73,192 @@ export class OrderPrismaRepository implements OrderRepositoryInterface {
 }
 
 export class OrderDetailPrismaRepository implements OrderDetailRepositoryInterface {
-    constructor(private prisma: PrismaService) { }
-  
-    async create(orderDetail: OrderDetail): Promise<OrderDetail> {
-      const createdOrderDetail = await this.prisma.orderDetail.create({
-        data: {
-          id: uuid(),
-          active   : true,
-          order: orderDetail.order,
-          lineNo: orderDetail.lineNo,
-          product: orderDetail.product,
-          quantity: orderDetail.quantity,
-          unitPrice: orderDetail.unitPrice,
-          amount: orderDetail.amount,
-          remark: orderDetail.remark,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        }
-      })
-      return new OrderDetail(
-        createdOrderDetail.id,
-        createdOrderDetail.active,
-        createdOrderDetail.order,
-        createdOrderDetail.lineNo,
-        createdOrderDetail.product,
-        createdOrderDetail.quantity,
-        createdOrderDetail.unitPrice,
-        createdOrderDetail.amount,
-        createdOrderDetail.remark,
-        createdOrderDetail.createdAt,
-        createdOrderDetail.updatedAt
-      )
-    }
-    async findOne(id: string): Promise<OrderDetail> {
-      const orderDetail = await this.prisma.orderDetail.findFirst({
-        where: {
-          id: id
-        }
-      })
-  
-      if (!orderDetail) return null
-  
-      return new OrderDetail(
-        orderDetail.id,
-        orderDetail.active,
-        orderDetail.order,
-        orderDetail.lineNo,
-        orderDetail.product,
-        orderDetail.quantity,
-        orderDetail.unitPrice,
-        orderDetail.amount,
-        orderDetail.remark,
-        orderDetail.createdAt,
-        orderDetail.updatedAt      
-      )
-    }
-    async findAll(): Promise<OrderDetail[]> {
-      return await this.prisma.orderDetail.findMany({})
-    }
+  constructor(private prisma: PrismaService) { }
+
+  async create(orderDetail: OrderDetail): Promise<OrderDetail> {
+    console.log('order-prisma-repository-orderDetailを通った1')
+    const createdOrderDetail = await this.prisma.orderDetail.create({ 
+      data: {
+        id: uuid(),
+        active: true,
+        order: orderDetail.order,
+        lineNo: orderDetail.lineNo,
+        product: orderDetail.product,
+        quantity: orderDetail.quantity,
+        unitPrice: orderDetail.unitPrice,
+        amount: orderDetail.amount,
+        remark: orderDetail.remark,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      }
+    })
+    console.log('order-prisma-repository-orderDetailを通った2')
+    return new OrderDetail(
+      createdOrderDetail.id,
+      createdOrderDetail.active,
+      createdOrderDetail.order,
+      createdOrderDetail.lineNo,
+      createdOrderDetail.product,
+      createdOrderDetail.quantity,
+      createdOrderDetail.unitPrice,
+      createdOrderDetail.amount,
+      createdOrderDetail.remark,
+      createdOrderDetail.createdAt,
+      createdOrderDetail.updatedAt
+    )
   }
+  async findOne(id: string): Promise<OrderDetail> {
+    const orderDetail = await this.prisma.orderDetail.findFirst({
+      where: {
+        id: id
+      }
+    })
+
+    if (!orderDetail) return null
+
+    return new OrderDetail(
+      orderDetail.id,
+      orderDetail.active,
+      orderDetail.order,
+      orderDetail.lineNo,
+      orderDetail.product,
+      orderDetail.quantity,
+      orderDetail.unitPrice,
+      orderDetail.amount,
+      orderDetail.remark,
+      orderDetail.createdAt,
+      orderDetail.updatedAt
+    )
+  }
+  async findAll(): Promise<OrderDetail[]> {
+    return await this.prisma.orderDetail.findMany({})
+  }
+}
+
+// export class OrderDetailPrismaRepository implements OrderDetailRepositoryInterface {
+//     constructor(private prisma: PrismaService) { }
+//     async create(orderDetail: OrderDetail): Promise<OrderDetail> {
+//       // console.log('order-prisma-repository-orderDetailを通った1')
+//       // console.log(orderDetail.id)
+//       // console.log(orderDetail.active)
+//       // console.log(orderDetail.order)
+//       // console.log(orderDetail.lineNo)
+//       // console.log(orderDetail.product)
+//       // console.log(orderDetail.quantity)
+//       // console.log(orderDetail.unitPrice)
+//       // console.log(orderDetail.amount)
+//       // console.log(orderDetail.remark)
+//       // console.log(orderDetail.createdAt)
+//       // console.log(orderDetail.updatedAt)
+//       console.log('order-prisma-repository-orderDetailを通った2')
+//       const createdOrderDetail = await this.prisma.orderDetail.create({
+//         data: {
+//           id: uuid(),
+//           active: false,
+//           order: orderDetail.order,
+//           lineNo: orderDetail.lineNo,
+//           product: orderDetail.product,
+//           quantity: orderDetail.quantity,
+//           unitPrice: orderDetail.unitPrice,
+//           amount: orderDetail.amount,
+//           remark: orderDetail.remark,
+//           createdAt: new Date(),
+//           updatedAt: new Date()
+//         }
+//       })
+//       return new OrderDetail(
+//         createdOrderDetail.id,
+//         createdOrderDetail.active,
+//         createdOrderDetail.order,
+//         createdOrderDetail.lineNo,
+//         createdOrderDetail.product,
+//         createdOrderDetail.quantity,
+//         createdOrderDetail.unitPrice,
+//         createdOrderDetail.amount,
+//         createdOrderDetail.remark,
+//         createdOrderDetail.createdAt,
+//         createdOrderDetail.updatedAt
+//       )
+//     }
+//     async findOne(id: string): Promise<OrderDetail> {
+//       const orderDetail = await this.prisma.orderDetail.findFirst({
+//         where: {
+//           id: id
+//         }
+//       })
+  
+//       if (!orderDetail) return null
+  
+//       return new OrderDetail(
+//         orderDetail.id,
+//         orderDetail.active,
+//         orderDetail.order,
+//         orderDetail.lineNo,
+//         orderDetail.product,
+//         orderDetail.quantity,
+//         orderDetail.unitPrice,
+//         orderDetail.amount,
+//         orderDetail.remark,
+//         orderDetail.createdAt,
+//         orderDetail.updatedAt      
+//       )
+//     }
+//     async findAll(): Promise<OrderDetail[]> {
+//       return await this.prisma.orderDetail.findMany({})
+//     }
+//   }
   
 
-  export class OrderArrayPrismaRepository implements OrderArrayRepositoryInterface {
-    constructor(private prisma: PrismaService) { }
+//   // export class OrderArrayPrismaRepository implements OrderArrayRepositoryInterface {
+//   //   constructor(private prisma: PrismaService) { }
   
-    async create(orderArray: OrderArray): Promise<OrderArray> {
-      console.log('order-prisma-repositoryを通った1')
-      let createdOrder = await this.prisma.order.create({
-        data: {
-          id: uuid(),
-          active: true,
-          orderDate: orderArray.orderDate,
-          sales: orderArray.sales,
-          customer: orderArray.customer,
-          approver: orderArray.approver,
-          approvalStage: '1',
-          confirmed: '1',
-          remark: orderArray.remark,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        }
-      })
-      console.log('order-prisma-repositoryを通った2')
-      const createdOrderDetail = await this.prisma.orderDetail.create({
-        data: {
-          id: uuid(),
-          active   : true,
-          order: orderArray.items.order,
-          lineNo: orderArray.items.lineNo,
-          product: orderArray.items.product,
-          quantity: orderArray.items.quantity,
-          unitPrice: orderArray.items.unitPrice,
-          amount: orderArray.items.amount,
-          remark: orderArray.items.remark,
-          createdAt: new Date(),
-          updatedAt: new Date()
-        }
-      })
-      console.log('order-prisma-repositoryを通った3')
-      return new OrderArray(
-        createdOrder.id,
-        createdOrder.active,
-        createdOrder.orderDate,
-        createdOrder.sales,
-        createdOrder.customer,
-        createdOrder.approver,
-        createdOrder.approvalStage,
-        createdOrder.confirmed,
-        createdOrder.remark,
-        createdOrder.createdAt,
-        createdOrder.updatedAt,
-        orderArray.items[12],
-      )
-    }
-
-  }
+//   //   async create(orderArray: OrderArray): Promise<OrderArray> {
+//   //     console.log('order-prisma-repositoryを通った1')
+//   //     const createdOrder = await this.prisma.order.create({
+//   //       data: {
+//   //         id: uuid(),
+//   //         active: true,
+//   //         orderDate: orderArray.orderDate,
+//   //         sales: orderArray.sales,
+//   //         customer: orderArray.customer,
+//   //         approver: orderArray.approver,
+//   //         approvalStage: '1',
+//   //         confirmed: '1',
+//   //         remark: orderArray.remark,
+//   //         createdAt: new Date(),
+//   //         updatedAt: new Date()
+//   //       }
+//   //     })
+//   //     console.log('order-prisma-repositoryを通った2')
+//   //     const createdOrderDetail = await this.prisma.orderDetail.create({
+//   //       data: {
+//   //         id: uuid(),
+//   //         active   : true,
+//   //         order: orderArray.items.order,
+//   //         lineNo: orderArray.items.lineNo,
+//   //         product: orderArray.items.product,
+//   //         quantity: orderArray.items.quantity,
+//   //         unitPrice: orderArray.items.unitPrice,
+//   //         amount: orderArray.items.amount,
+//   //         remark: orderArray.items.remark,
+//   //         createdAt: new Date(),
+//   //         updatedAt: new Date()
+//   //       }
+//   //     })
+//   //     console.log('order-prisma-repositoryを通った3')
+//   //     return new OrderArray(
+//   //       createdOrder.id,
+//   //       createdOrder.active,
+//   //       createdOrder.orderDate,
+//   //       createdOrder.sales,
+//   //       createdOrder.customer,
+//   //       createdOrder.approver,
+//   //       createdOrder.approvalStage,
+//   //       createdOrder.confirmed,
+//   //       createdOrder.remark,
+//   //       createdOrder.createdAt,
+//   //       createdOrder.updatedAt,
+//   //       orderArray.items[12],
+//   //     )
+//   //   }
+//   // }

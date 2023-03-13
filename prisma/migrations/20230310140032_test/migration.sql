@@ -1,0 +1,16 @@
+-- CreateTable
+CREATE TABLE `Test` (
+    `id` VARCHAR(191) NOT NULL,
+    `active` BOOLEAN NOT NULL,
+    `order` VARCHAR(191) NOT NULL,
+    `lineNo` VARCHAR(191) NOT NULL,
+    `product` VARCHAR(191) NOT NULL,
+    `quantity` VARCHAR(191) NOT NULL,
+    `unitPrice` VARCHAR(191) NOT NULL,
+    `amount` VARCHAR(191) NOT NULL,
+    `remark` VARCHAR(191) NOT NULL,
+    `createdAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+    `updatedAt` TIMESTAMP(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(0),
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

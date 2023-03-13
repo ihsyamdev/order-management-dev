@@ -75,11 +75,39 @@ model OrderDetail {
   id              String   @id @default(uuid())
   active　　　     Boolean
   order           String
-  lineNo          Int
+  lineNo          String
   product         String
-  quantity        Int
-  unitPrice       Decimal
-  amount          Decimal
+  quantity        String
+  unitPrice       String
+  amount          String
+  remark          String
+  createdAt       DateTime @default(now()) @db.Timestamp(0)
+  updatedAt       DateTime @default(now()) @updatedAt @db.Timestamp(0)  
+}
+
+model TestHead {
+  id              String   @id @default(uuid())
+  active　　　     Boolean
+  orderDate       DateTime
+  sales           String
+  customer        String
+  approver        String
+  approvalStage   String
+  confirmed       String
+  remark          String
+  createdAt       DateTime @default(now()) @db.Timestamp(0)
+  updatedAt       DateTime @default(now()) @updatedAt @db.Timestamp(0)
+}
+
+model Test {
+  id              String   @id @default(uuid())
+  active　　　     Boolean
+  order           String
+  lineNo          String
+  product         String
+  quantity        String
+  unitPrice       String
+  amount          String
   remark          String
   createdAt       DateTime @default(now()) @db.Timestamp(0)
   updatedAt       DateTime @default(now()) @updatedAt @db.Timestamp(0)  

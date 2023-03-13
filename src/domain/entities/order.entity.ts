@@ -11,6 +11,17 @@ export interface OrderCreateArgs {
   remark:string
 }
 
+export interface OrderDetailCreateArgs {
+  active: boolean
+  order: string
+  lineNo: string
+  product: string
+  quantity: string
+  unitPrice: string
+  amount: string
+  remark: string
+}
+
 export interface OrderArrayCreateArgs {
     active: boolean
     orderDate: Date
@@ -22,26 +33,16 @@ export interface OrderArrayCreateArgs {
     remark:string
     items:{
       active: boolean
-      lineNo: number
+      order: string
+      lineNo: string
       product: string
-      quantity: number
-      unitprice: Decimal
-      amount: Decimal
+      quantity: string
+      unitPrice: string
+      amount: string
       remark: string
     }
   }
 
-  export interface OrderDetailCreateArgs {
-    active: boolean
-    order: string
-    lineNo: number
-    product: string
-    quantity: number
-    unitprice: Decimal
-    amount: Decimal
-    remark: string
-  }
-  
   export class OrderArray {
     constructor(
       public readonly id: string,
@@ -59,11 +60,11 @@ export interface OrderArrayCreateArgs {
          id: string,
          active: boolean,
          order: string,
-         lineNo: number,
+         lineNo: string,
          product: string,
-         quantity: number,
-         unitPrice: Decimal,
-         amount: Decimal,
+         quantity: string,
+         unitPrice: string,
+         amount: string,
          remark: string,
          createdAt: Date,
          updatedAt: Date,
@@ -92,11 +93,11 @@ export interface OrderArrayCreateArgs {
       public readonly id: string,
       public readonly active: boolean,
       public readonly order: string,
-      public readonly lineNo: number,
+      public readonly lineNo: string,
       public readonly product: string,
-      public readonly quantity: number,
-      public readonly unitPrice: Decimal,
-      public readonly amount: Decimal,
+      public readonly quantity: string,
+      public readonly unitPrice: string,
+      public readonly amount: string,
       public readonly remark: string,
       public readonly createdAt: Date,
       public readonly updatedAt: Date,
