@@ -2,12 +2,16 @@ import { Module } from '@nestjs/common'
 import { CustomerModule } from './application/customer/customer.module'
 import { ProductModule } from './application/product/product.module'
 import { UserModule } from './application/user.module'
+import { OrderModule } from './application/order/order.module'
+import { TestModule } from './application/test/test.module'
 
 @Module({
   imports: [
     CustomerModule,
     ProductModule,
     UserModule,
+    OrderModule,
+    TestModule,
   ],
 })
 export class AppModule { }
