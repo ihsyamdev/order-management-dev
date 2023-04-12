@@ -56,3 +56,18 @@ model Product {
   updatedAt   DateTime @default(now()) @updatedAt @db.Timestamp(0)
   updatedBy   String
 }
+
+model Order {
+  id String @id @default(uuid())
+  active Boolean
+  customerId String
+  items OrderItem[]
+}
+
+model OrderItem {
+  id String @id @default(uuid())
+  product String
+  quantity Int
+  orderId String
+  order Order @relation(fields: [orderId], references: [id])
+}
