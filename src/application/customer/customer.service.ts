@@ -20,4 +20,8 @@ export class CustomerService {
   async findAll(): Promise<Customer[]> {
     return await this.customerRepository.findAll()
   }
+  
+  async findByName(name: string): Promise<Customer[]> {
+    return await this.customerRepository.findByName(name)
+  }
 }
