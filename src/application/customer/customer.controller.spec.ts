@@ -2,7 +2,6 @@ import { Test, TestingModule } from "@nestjs/testing"
 import { CustomerController } from "./customer.controller"
 import { CustomerModule } from "./customer.module"
 import { PrismaService } from "../../infrastructure/prisma/prisma.service"
-import * as request from 'supertest'
 
 const fixedCustomerId = 'existCustomerId01234567890'
 

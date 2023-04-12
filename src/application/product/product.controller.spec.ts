@@ -2,7 +2,6 @@ import { Test, TestingModule } from "@nestjs/testing"
 import { ProductController } from "./product.controller"
 import { ProductModule } from "./product.module"
 import { PrismaService } from "../../infrastructure/prisma/prisma.service"
-import * as request from 'supertest'
 
 const fixedProductId = 'rintest'
 

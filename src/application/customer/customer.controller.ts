@@ -32,6 +32,17 @@ export class CustomerController {
     }
   }
 
+  @Get('/search/:name')
+  async findByName(@Param('name') name: string) {
+    const customers = await this.customerService.findByName(name)
+    return {
+      statusCode: HttpStatus.OK,
+      items: {
+        customers
+      }
+    }
+  }
+
   @Post()
   async create(@Body() data: CustomerCreateArgs) {
     const customer: Customer = {

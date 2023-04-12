@@ -48,8 +48,8 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
       createdCustomer.updatedBy
     )
   }
+
   async findOne(userId: string): Promise<Customer> {
-    console.log('customer-prisma-repository')
     const customer = await this.prisma.customer.findFirst({
       where: {
         id: userId
@@ -77,7 +77,18 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
       customer.updatedBy
     )
   }
+
   async findAll(): Promise<Customer[]> {
     return await this.prisma.customer.findMany({})
+  }
+
+  async findByName(name: string): Promise<Customer[]> {
+    return await this.prisma.customer.findMany({
+      where: {
+        name: {
+          contains: name,
+        }
+      }
+    })
   }
 }
