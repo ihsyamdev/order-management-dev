@@ -50,7 +50,6 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
   }
 
   async findOne(userId: string): Promise<Customer> {
-    console.log('customer-prisma-repository')
     const customer = await this.prisma.customer.findFirst({
       where: {
         id: userId
