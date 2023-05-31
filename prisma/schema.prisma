@@ -48,9 +48,9 @@ model User {
 }
 
 model Product {
-  productId   String   @id @default(uuid())
-  productName String
-  useId       String   
+  id          String   @id @default(uuid())
+  name        String  
+  active      Boolean
   createdAt   DateTime @default(now()) @db.Timestamp(0)
   createdBy   String
   updatedAt   DateTime @default(now()) @updatedAt @db.Timestamp(0)
