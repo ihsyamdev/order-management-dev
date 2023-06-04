@@ -11,9 +11,9 @@ export class ProductPrismaRepository implements ProductRepositoryInterface {
   async create(product: Product): Promise<Product> {
     const createdProduct = await this.prisma.product.create({
       data: {
-        productId: uuid(),
-        productName: product.productName,
-        useId: product.useId,
+        id: uuid(),
+        name: product.name,
+        active: product.active,
         createdAt: new Date(),
         createdBy: product.createdBy,
         updatedAt: new Date(),
@@ -21,28 +21,28 @@ export class ProductPrismaRepository implements ProductRepositoryInterface {
       }
     })
     return new Product(
-      createdProduct.productId,
-      createdProduct.productName,
-      createdProduct.useId,
+      createdProduct.id,
+      createdProduct.name,
+      createdProduct.active,
       createdProduct.createdAt,
       createdProduct.createdBy,
       createdProduct.updatedAt,
       createdProduct.updatedBy
     )
   }
-  async findOne(productId: string): Promise<Product> {
+  async findOne(id: string): Promise<Product> {
     const product = await this.prisma.product.findFirst({
       where: {
-        productId: productId
+        id: id
       }
     })
 
     if (!product) return null
 
     return new Product(
-      product.productId,
-      product.productName,
-      product.useId,
+      product.id,
+      product.name,
+      product.active,
       product.createdAt,
       product.createdBy,
       product.updatedAt,
@@ -52,4 +52,72 @@ export class ProductPrismaRepository implements ProductRepositoryInterface {
   async findAll(): Promise<Product[]> {
     return await this.prisma.product.findMany({})
   }
+
+  async update(product: Product): Promise<Product> {
+    const updateProduct: Product = await this.prisma.product.update({
+      where: {
+        id: product.id
+      },
+      data: {
+        id: product.id,
+        name: product.name,
+        active: product.active,
+        createdAt: product.createdAt,
+        createdBy: product.createdBy,
+        updatedAt: product.updatedAt,
+        updatedBy: product.updatedBy
+      }
+    })
+    if (!product) return null
+
+    return new Product(
+      updateProduct.id,
+      updateProduct.name,
+      updateProduct.active,
+      updateProduct.createdAt,
+      updateProduct.createdBy,
+      updateProduct.updatedAt,
+      updateProduct.updatedBy
+    )
+  }
+    /*
+    {
+      return this.update.arguments
+      .createQueryBuilder()
+      .update()
+      .set({
+        name: product.name
+      })
+      .where('id = :id', product.id)
+      .execute()
+    }
+    */
+    async deleteOne(product: Product): Promise<Product> {
+      const updateProduct: Product = await this.prisma.product.update({
+        where: {
+          id: product.id
+        },
+        data: {
+          id: product.id,
+          name: product.name,
+          active: product.active,
+          createdAt: product.createdAt,
+          createdBy: product.createdBy,
+          updatedAt: new Date(),
+          updatedBy: product.updatedBy
+        }
+      })
+      if (!updateProduct) return null
+  
+      return new Product(
+        updateProduct.id,
+        updateProduct.name,
+        updateProduct.active,
+        updateProduct.createdAt,
+        updateProduct.createdBy,
+        updateProduct.updatedAt,
+        updateProduct.updatedBy
+      )
+    }
+
 }

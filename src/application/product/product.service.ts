@@ -13,11 +13,19 @@ export class ProductService {
     return await this.ProductRepository.create(product)
   }
 
-  async findOne(productId: string): Promise<Product> {
-    return await this.ProductRepository.findOne(productId)
+  async findOne(id: string): Promise<Product> {
+    return await this.ProductRepository.findOne(id)
   }
 
   async findAll(): Promise<Product[]> {
     return await this.ProductRepository.findAll()
+  }
+
+  async update(product: Product): Promise<Product> {
+    return await this.ProductRepository.update(product)
+  }
+
+  async deleteOne(product: Product): Promise<Product> {
+    return await this.ProductRepository.deleteOne(product)
   }
 }
