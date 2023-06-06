@@ -24,4 +24,12 @@ export class CustomerService {
   async findByName(name: string): Promise<Customer[]> {
     return await this.customerRepository.findByName(name)
   }
+
+  async update(customer: Customer): Promise<Customer> {
+    return await this.customerRepository.update(customer)
+  }  
+
+  async deleteOne(customer: Customer): Promise<Customer> {
+    return await this.customerRepository.deleteOne(customer)
+  } 
 }
