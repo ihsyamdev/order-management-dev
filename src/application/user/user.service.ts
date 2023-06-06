@@ -20,4 +20,12 @@ export class UserService {
   async findAll(): Promise<User[]> {
     return await this.userRepository.findAll()
   }
+
+  async update(user: User): Promise<User> {
+    return await this.userRepository.update(user)
+  }
+  
+  async deleteOne(user: User): Promise<User> {
+    return await this.userRepository.deleteOne(user)
+  }  
 }
