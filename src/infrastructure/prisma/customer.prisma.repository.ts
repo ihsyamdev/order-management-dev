@@ -91,4 +91,98 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
       }
     })
   }
+
+  async update(customer :Customer): Promise<Customer> {
+    const updateCustomer = await this.prisma.customer.update({
+      where: {
+        id : customer.id
+      },
+      data: {
+        id: customer.id,
+        name: customer.name,
+        billingPostalCode: customer.billingPostalCode,
+        billingState: customer.billingState,
+        billingCity: customer.billingCity,
+        billingStreet: customer.billingStreet,
+        shippingPostalCode: customer.shippingPostalCode,
+        shippingState: customer.shippingState,
+        shippingCity: customer.shippingCity,
+        shippingStreet: customer.shippingStreet,
+        phone: customer.phone,
+        active: customer.active,
+        createdAt: customer.createdAt,
+        createdBy: customer.createdBy,
+        updatedAt: new Date(),
+        updatedBy: customer.updatedBy
+      }
+    })
+
+    if (!customer) return null
+
+    return new Customer(
+      updateCustomer.id,
+      updateCustomer.name,
+      updateCustomer.billingPostalCode,
+      updateCustomer.billingState,
+      updateCustomer.billingCity,
+      updateCustomer.billingStreet,
+      updateCustomer.shippingPostalCode,
+      updateCustomer.shippingState,
+      updateCustomer.shippingCity,
+      updateCustomer.shippingStreet,
+      updateCustomer.phone,
+      updateCustomer.active,
+      updateCustomer.createdAt,
+      updateCustomer.createdBy,
+      updateCustomer.updatedAt,
+      updateCustomer.updatedBy
+    )
+  }
+
+  async deleteOne(customer: Customer): Promise<Customer> {
+    const updateCustomer: Customer = await this.prisma.customer.update({
+      where: {
+        id: customer.id
+      },
+      data: {
+        id: customer.id,
+        name: customer.name,
+        billingPostalCode: customer.billingPostalCode,
+        billingState: customer.billingState,
+        billingCity: customer.billingCity,
+        billingStreet: customer.billingStreet,
+        shippingPostalCode: customer.shippingPostalCode,
+        shippingState: customer.shippingState,
+        shippingCity: customer.shippingCity,
+        shippingStreet: customer.shippingStreet,
+        phone: customer.phone,
+        active: customer.active,
+        createdAt: customer.createdAt,
+        createdBy: customer.createdBy,
+        updatedAt: new Date(),
+        updatedBy: customer.updatedBy
+      }
+    })
+      if (!updateCustomer) return null
+  
+      return new Customer(
+        updateCustomer.id,
+        updateCustomer.name,
+        updateCustomer.billingPostalCode,
+        updateCustomer.billingState,
+        updateCustomer.billingCity,
+        updateCustomer.billingStreet,
+        updateCustomer.shippingPostalCode,
+        updateCustomer.shippingState,
+        updateCustomer.shippingCity,
+        updateCustomer.shippingStreet,
+        updateCustomer.phone,
+        updateCustomer.active,
+        updateCustomer.createdAt,
+        updateCustomer.createdBy,
+        updateCustomer.updatedAt,
+        updateCustomer.updatedBy
+      )
+    }
+
 }
