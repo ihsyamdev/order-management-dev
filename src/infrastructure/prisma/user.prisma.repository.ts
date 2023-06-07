@@ -60,4 +60,70 @@ export class UserPrismaRepository implements UserRepositoryInterface {
   async findAll(): Promise<User[]> {
     return await this.prisma.user.findMany({})
   }
+
+  async update(user: User): Promise<User> {
+    const updateUser: User = await this.prisma.user.update({
+      where: {
+        id: user.id
+      },
+      data: {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        active: user.active,
+        createdAt: user.createdAt,
+        createdBy: user.createdBy,
+        updatedAt: user.updatedAt,
+        updatedBy: user.updatedBy
+      }
+    })
+    if (!user) return null
+
+    return new User(
+      updateUser.id,
+      updateUser.firstName,
+      updateUser.lastName,
+      updateUser.email,
+      updateUser.active,
+      updateUser.createdAt,
+      updateUser.createdBy,
+      updateUser.updatedAt,
+      updateUser.updatedBy
+    )
+  }
+
+  async deleteOne(user: User): Promise<User> {
+    const updateUser: User = await this.prisma.user.update({
+      where: {
+        id: user.id
+      },
+      data: {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        active: user.active,
+        createdAt: user.createdAt,
+        createdBy: user.createdBy,
+        updatedAt: user.updatedAt,
+        updatedBy: user.updatedBy
+      }
+    })
+      if (!updateUser) return null
+  
+      return new User(
+        updateUser.id,
+        updateUser.firstName,
+        updateUser.lastName,
+        updateUser.email,
+        updateUser.active,
+        updateUser.createdAt,
+        updateUser.createdBy,
+        updateUser.updatedAt,
+        updateUser.updatedBy
+      )
+    }
+
+
 }
