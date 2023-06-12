@@ -1,5 +1,3 @@
-
-
 import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post, Put } from "@nestjs/common"
 import { ProductService } from "./product.service"
 import { Product, ProductCreateArgs } from "src/domain/entities/product.entity"
