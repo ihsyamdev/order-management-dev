@@ -7,7 +7,7 @@ async function bootstrap() {
 
   // CORS設定
   const corsOptions: CorsOptions = {
-    origin: 'http://localhost:3001',
+    origin: process.env.FRONTEND_URL,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
   }
