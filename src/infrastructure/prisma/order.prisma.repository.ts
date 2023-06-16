@@ -73,6 +73,4 @@ export class OrderPrismaRepository implements OrderRepositoryInterface {
       return await this.prisma.order.findMany({})
     }  
 
-
-
   }

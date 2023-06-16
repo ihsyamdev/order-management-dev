@@ -11,17 +11,19 @@ export class ProductPrismaRepository implements ProductRepositoryInterface {
   async create(product: Product): Promise<Product> {
     const createdProduct = await this.prisma.product.create({
       data: {
-        id: uuid(),
+        id: product.id,
+        shortId: product.shortId,
         name: product.name,
         active: product.active,
-        createdAt: new Date(),
+        createdAt: product.createdAt,
         createdBy: product.createdBy,
-        updatedAt: new Date(),
+        updatedAt: product.updatedAt,
         updatedBy: product.updatedBy
       }
     })
     return new Product(
       createdProduct.id,
+      createdProduct.shortId,
       createdProduct.name,
       createdProduct.active,
       createdProduct.createdAt,
@@ -41,6 +43,7 @@ export class ProductPrismaRepository implements ProductRepositoryInterface {
 
     return new Product(
       product.id,
+      product.shortId,
       product.name,
       product.active,
       product.createdAt,
@@ -60,6 +63,7 @@ export class ProductPrismaRepository implements ProductRepositoryInterface {
       },
       data: {
         id: product.id,
+        shortId: product.shortId,
         name: product.name,
         active: product.active,
         createdAt: product.createdAt,
@@ -72,6 +76,7 @@ export class ProductPrismaRepository implements ProductRepositoryInterface {
 
     return new Product(
       updateProduct.id,
+      updateProduct.shortId,
       updateProduct.name,
       updateProduct.active,
       updateProduct.createdAt,
@@ -80,18 +85,7 @@ export class ProductPrismaRepository implements ProductRepositoryInterface {
       updateProduct.updatedBy
     )
   }
-    /*
-    {
-      return this.update.arguments
-      .createQueryBuilder()
-      .update()
-      .set({
-        name: product.name
-      })
-      .where('id = :id', product.id)
-      .execute()
-    }
-    */
+
     async deleteOne(product: Product): Promise<Product> {
       const updateProduct: Product = await this.prisma.product.update({
         where: {
@@ -99,11 +93,12 @@ export class ProductPrismaRepository implements ProductRepositoryInterface {
         },
         data: {
           id: product.id,
+          shortId: product.shortId,
           name: product.name,
           active: product.active,
           createdAt: product.createdAt,
           createdBy: product.createdBy,
-          updatedAt: new Date(),
+          updatedAt: product.updatedAt,
           updatedBy: product.updatedBy
         }
       })
@@ -111,6 +106,7 @@ export class ProductPrismaRepository implements ProductRepositoryInterface {
   
       return new Product(
         updateProduct.id,
+        updateProduct.shortId,
         updateProduct.name,
         updateProduct.active,
         updateProduct.createdAt,

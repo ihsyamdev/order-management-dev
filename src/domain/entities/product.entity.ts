@@ -8,6 +8,7 @@ export interface ProductCreateArgs {
 export class Product {
   constructor(
     public readonly id: string,
+    public readonly shortId: string,    
     public readonly name: string,
     public readonly active: boolean,
     public readonly createdAt: Date,

@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post } from "@
 import { CustomerService } from "./customer.service"
 import { Customer, CustomerCreateArgs } from "src/domain/entities/customer.entity"
 import { v4 as uuid } from 'uuid'
+import { customAlphabet } from 'nanoid'
 
 @Controller('customer')
 export class CustomerController {
@@ -12,8 +13,11 @@ export class CustomerController {
 
   @Post()
   async create(@Body() data: CustomerCreateArgs) {
+    var wkid = uuid();
+    var wkshortId = customAlphabet(wkid,10)();
     const customer: Customer = {
-      id: uuid(),
+      id: wkid,
+      shortId: wkshortId,      
       name: data.name,
       billingPostalCode: data.billingPostalCode,
       billingState: data.billingState,
@@ -76,6 +80,7 @@ export class CustomerController {
 async update(@Body() data :Customer){
   const customer: Customer = {
     id: data.id,
+    shortId: data.shortId,
     name: data.name,
     billingPostalCode: data.billingPostalCode,
     billingState: data.billingState,
@@ -105,6 +110,7 @@ async update(@Body() data :Customer){
 async deleteOne(@Body() data: Customer) {
   const customer: Customer = {
     id: data.id,
+    shortId: data.shortId,
     name: data.name,
     billingPostalCode: data.billingPostalCode,
     billingState: data.billingState,

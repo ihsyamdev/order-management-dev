@@ -11,7 +11,8 @@ export class UserPrismaRepository implements UserRepositoryInterface {
   async create(user: User): Promise<User> {
     const createdUser = await this.prisma.user.create({
       data: {
-        id: uuid(),
+        id: user.id,
+        shortId: user.shortId,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
@@ -24,6 +25,7 @@ export class UserPrismaRepository implements UserRepositoryInterface {
     })
     return new User(
       createdUser.id,
+      createdUser.shortId,
       createdUser.firstName,
       createdUser.lastName,
       createdUser.email,
@@ -46,6 +48,7 @@ export class UserPrismaRepository implements UserRepositoryInterface {
 
     return new User(
       user.id,
+      user.shortId,
       user.firstName,
       user.lastName,
       user.email,
@@ -82,6 +85,7 @@ export class UserPrismaRepository implements UserRepositoryInterface {
 
     return new User(
       updateUser.id,
+      updateUser.shortId,
       updateUser.firstName,
       updateUser.lastName,
       updateUser.email,
@@ -100,6 +104,7 @@ export class UserPrismaRepository implements UserRepositoryInterface {
       },
       data: {
         id: user.id,
+        shortId: user.shortId,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
@@ -114,6 +119,7 @@ export class UserPrismaRepository implements UserRepositoryInterface {
   
       return new User(
         updateUser.id,
+        updateUser.shortId,
         updateUser.firstName,
         updateUser.lastName,
         updateUser.email,

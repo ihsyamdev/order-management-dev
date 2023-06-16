@@ -4,7 +4,6 @@ export interface OrderRepositoryInterface {
     create(order: Order): Promise<Order>
     findOne(Id: string): Promise<Order>
     findAll(): Promise<Order[]>
-    deleteOne(order: Order): Promise<Order>
 }
 
 export interface OrderItemRepositoryInterface {

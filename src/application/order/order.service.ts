@@ -21,8 +21,4 @@ export class OrderService {
       return await this.orderRepository.findAll()
     }
 
-    async deleteOne(order: Order): Promise<Order> {
-      return await this.orderRepository.deleteOne(order)
-    }
-
   }

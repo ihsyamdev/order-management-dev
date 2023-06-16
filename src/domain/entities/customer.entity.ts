@@ -16,6 +16,7 @@ export interface CustomerCreateArgs {
 export class Customer {
   constructor(
     public readonly id: string,
+    public readonly shortId: string,
     public readonly name: string,
     public readonly billingPostalCode: string,
     public readonly billingState: string,

@@ -18,6 +18,7 @@ model hoge {
 
 model Customer {
   id                 String   @id @default(uuid())
+  shortId            String   @default(nanoid()) 
   name               String
   billingPostalCode  String
   billingState       String
@@ -37,6 +38,7 @@ model Customer {
 
 model User {
   id        String   @id @default(uuid())
+  shortId   String   @default(nanoid()) 
   firstName String
   lastName  String
   email     String   @unique
@@ -49,6 +51,7 @@ model User {
 
 model Product {
   id          String   @id @default(uuid())
+  shortId     String   @default(nanoid()) 
   name        String  
   active      Boolean
   createdAt   DateTime @default(now()) @db.Timestamp(0)
