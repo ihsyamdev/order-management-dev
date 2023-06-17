@@ -18,6 +18,7 @@ model hoge {
 
 model Customer {
   id                 String   @id @default(uuid())
+  shortId            String   @default(nanoid()) 
   name               String
   billingPostalCode  String
   billingState       String
@@ -37,6 +38,7 @@ model Customer {
 
 model User {
   id        String   @id @default(uuid())
+  shortId   String   @default(nanoid()) 
   firstName String
   lastName  String
   email     String   @unique
@@ -49,6 +51,7 @@ model User {
 
 model Product {
   id          String   @id @default(uuid())
+  shortId     String   @default(nanoid()) 
   name        String  
   active      Boolean
   createdAt   DateTime @default(now()) @db.Timestamp(0)
@@ -60,14 +63,33 @@ model Product {
 model Order {
   id String @id @default(uuid())
   active Boolean
+  orderDate DateTime
+  userId String
   customerId String
+  approver String
+  draftFlag Boolean
+  approvalStage String
+  confirmed String
+  createdAt   DateTime @default(now()) @db.Timestamp(0)
+  createdBy   String
+  updatedAt   DateTime @default(now()) @updatedAt @db.Timestamp(0)
+  updatedBy   String
   items OrderItem[]
 }
 
 model OrderItem {
   id String @id @default(uuid())
-  product String
-  quantity Int
-  orderId String
-  order Order @relation(fields: [orderId], references: [id])
+  active Boolean
+  parentId String
+  lineNumber String
+  productId String
+  quantity String
+  unitPrice String
+  amount String
+  remark String
+  createdAt   DateTime @default(now()) @db.Timestamp(0)
+  createdBy   String
+  updatedAt   DateTime @default(now()) @updatedAt @db.Timestamp(0)
+  updatedBy   String
+  order Order @relation(fields: [parentId], references: [id])
 }

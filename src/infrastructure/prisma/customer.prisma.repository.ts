@@ -11,7 +11,8 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
   async create(customer: Customer): Promise<Customer> {
     const createdCustomer = await this.prisma.customer.create({
       data: {
-        id: uuid(),
+        id: customer.id,
+        shortId: customer.shortId,
         name: customer.name,
         billingPostalCode: customer.billingPostalCode,
         billingState: customer.billingState,
@@ -31,6 +32,7 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
     })
     return new Customer(
       createdCustomer.id,
+      createdCustomer.shortId,
       createdCustomer.name,
       createdCustomer.billingPostalCode,
       createdCustomer.billingState,
@@ -60,6 +62,7 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
 
     return new Customer(
       customer.id,
+      customer.shortId,
       customer.name,
       customer.billingPostalCode,
       customer.billingState,
@@ -99,6 +102,7 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
       },
       data: {
         id: customer.id,
+        shortId: customer.shortId,
         name: customer.name,
         billingPostalCode: customer.billingPostalCode,
         billingState: customer.billingState,
@@ -121,6 +125,7 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
 
     return new Customer(
       updateCustomer.id,
+      updateCustomer.shortId,
       updateCustomer.name,
       updateCustomer.billingPostalCode,
       updateCustomer.billingState,
@@ -146,6 +151,7 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
       },
       data: {
         id: customer.id,
+        shortId: customer.shortId,
         name: customer.name,
         billingPostalCode: customer.billingPostalCode,
         billingState: customer.billingState,
@@ -167,6 +173,7 @@ export class CustomerPrismaRepository implements CustomerRepositoryInterface {
   
       return new Customer(
         updateCustomer.id,
+        updateCustomer.shortId,
         updateCustomer.name,
         updateCustomer.billingPostalCode,
         updateCustomer.billingState,

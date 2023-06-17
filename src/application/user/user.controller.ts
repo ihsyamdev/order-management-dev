@@ -3,6 +3,7 @@ import { v4 as uuid } from 'uuid'
 import { UserService } from "./user.service"
 import { User } from "src/domain/entities/user.entity"
 import { UserCreateArgs } from "src/domain/entities/user.entity"
+import { customAlphabet } from 'nanoid'
 
 @Controller('user')
 export class UserController {
@@ -12,8 +13,11 @@ export class UserController {
 
   @Post()
   async create(@Body() data: UserCreateArgs) {
+    var wkid = uuid();
+    var wkshortId = customAlphabet(wkid,10)();
     const user: User = {
-      id: uuid(),
+      id: wkid,
+      shortId: wkshortId,
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
@@ -59,6 +63,7 @@ export class UserController {
   async update(@Body() data: User) {
     const user: User = {
       id: data.id,
+      shortId: data.shortId,
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,
@@ -81,6 +86,7 @@ export class UserController {
   async deleteOne(@Body() data: User) {
     const user: User = {
       id: data.id,
+      shortId: data.shortId,
       firstName: data.firstName,
       lastName: data.lastName,
       email: data.email,

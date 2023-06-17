@@ -1,9 +1,8 @@
-
-
 import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post, Put } from "@nestjs/common"
 import { ProductService } from "./product.service"
 import { Product, ProductCreateArgs } from "src/domain/entities/product.entity"
 import { v4 as uuid } from 'uuid'
+import { customAlphabet } from 'nanoid'
 
 @Controller('Product')
 export class ProductController {
@@ -14,8 +13,11 @@ export class ProductController {
 
   @Post()
   async create(@Body() data: ProductCreateArgs) {
+    var wkid = uuid();
+    var wkshortId = customAlphabet(wkid,10)();
     const product: Product = {
-      id: uuid(),
+      id: wkid,
+      shortId: wkshortId,
       name: data.name,
       active: data.active,
       createdAt: new Date(),
@@ -58,6 +60,7 @@ export class ProductController {
   async update(@Body() data: Product) {
     const product: Product = {
       id: data.id,
+      shortId: data.shortId,
       name: data.name,
       active: data.active,
       createdAt: data.createdAt,
@@ -78,6 +81,7 @@ export class ProductController {
   async deleteOne(@Body() data: Product) {
     const product: Product = {
       id: data.id,
+      shortId: data.shortId,
       name: data.name,
       active: false,
       createdAt: data.createdAt,
