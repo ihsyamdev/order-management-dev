@@ -1,8 +1,8 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post } from "@nestjs/common"
 import { v4 as uuid } from 'uuid'
-import { UserService } from "./user.service"
-import { User } from "src/domain/entities/user.entity"
-import { UserCreateArgs } from "src/domain/entities/user.entity"
+import { UserService } from "../user.service"
+import { User } from "src/modules/user/entities/user.entity"
+import { UserCreateArgs } from "src/modules/user/entities/user.entity"
 import { customAlphabet } from 'nanoid'
 
 @Controller('user')
